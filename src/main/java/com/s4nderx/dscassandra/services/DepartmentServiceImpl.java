@@ -29,8 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDTO findById(UUID id) {
-        Optional<Department> result = repository.findById(id);
-        Department entity = result.orElseThrow(() -> new ResourceNotFoundException("Id nao encontrado: " + id));
+        Department entity = this.getById(id);
         return new DepartmentDTO(entity);
     }
 
@@ -43,7 +42,20 @@ public class DepartmentServiceImpl implements DepartmentService {
         return new DepartmentDTO(entity);
     }
 
+    @Override
+    public DepartmentDTO update(UUID uuid, DepartmentDTO dto) {
+        Department entity = this.getById(uuid);
+        copyDtoToEntity(dto, entity);
+        entity = repository.save(entity);
+        return new DepartmentDTO(entity);
+    }
+
     private void copyDtoToEntity(DepartmentDTO dto, Department entity) {
         entity.setName(dto.getName());
+    }
+
+    private Department getById(UUID uuid){
+        Optional<Department> result = repository.findById(uuid);
+        return result.orElseThrow(() -> new ResourceNotFoundException("Id nao encontrado: " + uuid));
     }
 }

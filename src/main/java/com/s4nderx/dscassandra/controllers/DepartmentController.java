@@ -40,4 +40,10 @@ public class DepartmentController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uuid}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @PutMapping(value = "/{uuid}")
+    public ResponseEntity<DepartmentDTO> insert(@PathVariable UUID uuid, @RequestBody DepartmentDTO dto){
+        dto = service.update(uuid, dto);
+        return ResponseEntity.ok(dto);
+    }
 }
