@@ -42,8 +42,14 @@ public class DepartmentController {
     }
 
     @PutMapping(value = "/{uuid}")
-    public ResponseEntity<DepartmentDTO> insert(@PathVariable UUID uuid, @RequestBody DepartmentDTO dto){
+    public ResponseEntity<DepartmentDTO> update(@PathVariable UUID uuid, @RequestBody DepartmentDTO dto){
         dto = service.update(uuid, dto);
         return ResponseEntity.ok(dto);
+    }
+
+    @DeleteMapping(value = "/{uuid}")
+    public ResponseEntity<Void> delete(@PathVariable UUID uuid){
+        service.deleteById(uuid);
+        return ResponseEntity.noContent().build();
     }
 }

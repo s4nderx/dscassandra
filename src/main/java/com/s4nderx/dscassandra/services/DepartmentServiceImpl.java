@@ -50,6 +50,16 @@ public class DepartmentServiceImpl implements DepartmentService {
         return new DepartmentDTO(entity);
     }
 
+    @Override
+    public void deleteById(UUID uuid){
+
+        if (!repository.existsById(uuid)){
+            throw new ResourceNotFoundException("Id not found, id: " + uuid);
+        }
+
+        repository.deleteById(uuid);
+    }
+
     private void copyDtoToEntity(DepartmentDTO dto, Department entity) {
         entity.setName(dto.getName());
     }

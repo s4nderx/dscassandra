@@ -9,7 +9,12 @@ import java.util.UUID;
 public interface DepartmentService {
 
     List<DepartmentDTO> findAll();
+
     DepartmentDTO findById(UUID id);
+
     DepartmentDTO insert(DepartmentDTO dto);
+
     DepartmentDTO update(UUID uuid, DepartmentDTO dto);
+
+    void deleteById(UUID uuid);
 }
