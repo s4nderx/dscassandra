@@ -10,4 +10,5 @@ public interface DepartmentService {
 
     List<DepartmentDTO> findAll();
     DepartmentDTO findById(UUID id);
+    DepartmentDTO insert(DepartmentDTO dto);
 }
