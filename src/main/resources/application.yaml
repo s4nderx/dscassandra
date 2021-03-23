@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: test
+
+#spring:
+#  data:
+#    cassandra:
+#      contact-points: localhost
+#      keyspace-name: productsdb
+#      port: 9042
+#      local-datacenter: datacenter1
