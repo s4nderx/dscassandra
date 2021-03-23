@@ -5,6 +5,7 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 @UserDefinedType("prop")
 public class Prop {
+
     private String name;
     private String value;
     private PropType type;
